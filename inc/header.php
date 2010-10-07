@@ -24,7 +24,7 @@
 	<div id="container">
 		<div id="top">
 			<div id="author">
-				<h2><a href="http://twitter.com/<?php echo s($config['twitter_screenname']); ?>"><strong><?php echo s($author['realname']); ?></strong> (@<?php echo s($config['twitter_screenname']); ?>)<img src="<?php echo s($author['profileimage']); ?>" width="48" height="48" alt="" /></a></h2>
+				<h2><a href="<?php echo $path;  ?>"><strong><?php echo s($author['realname']); ?></strong></a> <a href="http://twitter.com/<?php echo s($config['twitter_screenname']); ?>">(@<?php echo s($config['twitter_screenname']); ?>)</a><a href="<?php echo $path;  ?>"><img src="<?php echo s($author['profileimage']); ?>" width="48" height="48" alt="" /></a></h2>
 				<p><?php echo s($author['location']); ?></p>
 			</div>
 			<div id="info">
