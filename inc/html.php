@@ -54,7 +54,8 @@
 			}
 			$c  = trim($c);
 			$s .= $y . "<li" . ($c ? " class=\"" . $c . "\"" : "") . ">" .
-			"<a href=\"" . ($cc > 0 ? $pURL : $path . "/" . s($m['y']) . "/" . s(pad($m['m']))) . "\">" .
+			"<a href=\"" . ($cc > 0 ? $pURL : $path . "/month.php?y=" . $m['y'] . "&m=" . s(pad($m['m']))) . "\">" .
+			/*"<a href=\"" . ($cc > 0 ? $pURL : $path . "/" . s($m['y']) . "/" . s(pad($m['m']))) . "\">" .*/
 			"<span class=\"m\">" . date("F Y", mktime(1,0,0,$m['m'],1,$m['y'])) . "</span>" .
 			"<span class=\"n\"> " . number_format($m['c']) . ($cc > 0 ? " <strong>(" . number_format($cc) . ")</strong>" : "") . 
 			"</span><span class=\"p\" style=\"width:" . round((($m['c']/$max)*100), 2) . "%\"></span></a></li>\n";
@@ -91,7 +92,7 @@
 				$s .= $y . "<div class=\"d\"><a title=\"" . s($d['total']) . " tweet" . (($d['total'] == 1) ? "" : "s") .
 				(!empty($d['c1']) ? ", " . s($d['c1']) . " repl" . ($d['c1'] == 1 ? "y" : "ies") : "") .
 				(!empty($d['c2']) ? ", " . s($d['c2']) . " retweet" . ($d['c2'] == 1 ? "" : "s") : "") .
-				"\" href=\"" . $path . "/" . s($year) . "/" . s(pad($month)) . "/" . s(pad($i+1)) . "\">" .
+				"\" href=\"" . $path . "/day.php?y=" . s($year) . "&m=" . s(pad($month)) . "&d=" . s(pad($i+1)) . "\">" .
 				"<span class=\"p\" style=\"height:" . round((($d['total']/$max)*250), 2) . "px\">" .
 				"<span class=\"n\">" . ($d['total'] != 1 ? number_format($d['total']) : "") . "</span>" . 
 				(!empty($d['c1']) ? "<span class=\"r\" style=\"height:" . round((($d['c1']/$max)*250), 2) . "px\"></span>" : "") . 
@@ -100,7 +101,7 @@
 				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") . 
 				"</span></a></div>\n";
 			} else {
-				$s .= $y . "<div class=\"d\"><a href=\"" . $path . "/" . s($year) . "/" . s(pad($month)) . "/" . s(pad($i+1)) . "\">" .
+				$s .= $y . "<div class=\"d\"><a href=\"" . $path . "/day.php?y=" . s($year) . "&m=" . s(pad($month)) . "&d=" . s(pad($i+1)) . "\">" .
 				"<span class=\"z\">0</span><span class=\"m" . (($wd == 0 || $wd == 6) ? " mm" : "") . ($today ? " ms" : "") . "\">" .
 				($today ? "<strong>" : "") . s($i+1) . ($today ? "</strong>" : "") . 
 				"</span></a></div>\n";
@@ -178,15 +179,15 @@
 				$nTQ      = $db->query($half . " > '" . $db->s($last)  . "' ORDER BY `time` ASC LIMIT 1");
 				if($db->numRows($pTQ) > 0){
 					$prevTweet = $db->fetch($pTQ);
-					$nextprev .= "<a class=\"prev\" href=\"" . $path . "/" . 
-						s($prevTweet['year']) . "/" . s(pad($prevTweet['month'])) . "/" . s(pad($prevTweet['day'])) . 
+					$nextprev .= "<a class=\"prev\" href=\"" . $path . "/day.php?y=" . 
+						s($prevTweet['year']) . "&m=" . s(pad($prevTweet['month'])) . "&d=" . s(pad($prevTweet['day'])) . 
 						"\">&larr; <span>" . date("F jS", mktime(4,0,0, $prevTweet['month'], $prevTweet['day'], $prevTweet['year'])) . 
 						"</span></a> ";
 				}
 				if($db->numRows($nTQ) > 0){
 					$nextTweet = $db->fetch($nTQ);
-					$nextprev .= "<a class=\"next\" href=\"" . $path . "/" . 
-						s($nextTweet['year']) . "/" . s(pad($nextTweet['month'])) . "/" . s(pad($nextTweet['day'])) . 
+					$nextprev .= "<a class=\"next\" href=\"" . $path . "/day.php?y=" . 
+						s($nextTweet['year']) . "&m=" . s(pad($nextTweet['month'])) . "&d=" . s(pad($nextTweet['day'])) . 
 						"\"><span>" . date("F jS", mktime(4,0,0, $nextTweet['month'], $nextTweet['day'], $nextTweet['year'])) . 
 						"</span> &rarr;</a>";
 				}
