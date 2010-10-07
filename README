@@ -1,0 +1,3 @@
+This project is forked from Andy Graulund's TweetNest project in order to remove "Archives not found." bug. I also made some changes to the links in header in order to provide better user experience. This version works better if you are on a shared hosting and want to keep your existing .htaccess file.
+
+See it in action: http://www.gercekkarakus.com/tweetnest/
